@@ -3,7 +3,19 @@ let addTodoButton = document.getElementById("addTodoButton");
 let saveTodoButton = document.getElementById("saveTodoButton");
 
 
+function getTodoListFromLocalStorage() {
+    let stringifiedTodoList = localStorage.getItem("todoList");
+    let parsedTodoList = JSON.parse(stringifiedTodoList);
+    if (parsedTodoList === null) {
+        return [];
+    } else {
+        return parsedTodoList;
+    }
+}
 let todoList = [];
+if (todoList !== []) {
+    todoList = getTodoListFromLocalStorage();
+}
 let todosCount = todoList.length;
 
 saveTodoButton.onclick = function() {
